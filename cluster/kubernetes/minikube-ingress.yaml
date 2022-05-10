@@ -7,6 +7,11 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     nginx.ingress.kubernetes.io/satisfy: "any"
 spec:
+  defaultBackend:
+    service:
+      name: default-http-backend
+      port:
+        number: 80
   ingressClassName: nginx
   rules:
     - host: spark-kubernetes
@@ -29,4 +34,3 @@ spec:
                 name: spark-master
                 port: 
                   number: 7077
-  

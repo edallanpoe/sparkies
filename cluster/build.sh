@@ -17,7 +17,7 @@ if [ "disabled" == "INGRESS_STATUS" ]; then
     minikube addons enable ingress
 fi
 
-kubectl apply -f $CLUSTER_PATH/kubernetes/minikube-ingress.yaml &&
+kubectl apply -f $CLUSTER_PATH/kubernetes/minikube-ingress.yaml
 echo -e "\n[INFO] Adding ingress entry to hosts ..."
 # echo "$(minikube ip) spark-kubernetes" | sudo tee -a /etc/hosts
 
@@ -29,6 +29,5 @@ echo -e "\n[INFO] Services:"
 kubectl get services
 echo -e "\n[INFO] Pods:"
 kubectl get pods
-minikube service $DEPLOYMENT --url
 
 echo "[INFO] Done."

@@ -24,6 +24,9 @@ RUN mkdir -p /opt && \
 # add scripts and update spark default config
 ADD ./configs/common.sh ./configs/spark-master ./configs/spark-worker /
 ADD ./configs/spark-defaults.conf /opt/spark/conf/spark-defaults.conf
-RUN chmod +x /spark-* /common.sh
+ENV PATH=$PATH:/opt/spark/bin
 
-ENV PATH $PATH:/opt/spark/bin
+RUN chmod +x /spark-* /common.sh /opt/spark/bin/*
+RUN mkdir /tmp/spark-events/
+
+ENTRYPOINT [ "/bin/bash" ]
