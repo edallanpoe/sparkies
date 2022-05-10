@@ -13,7 +13,7 @@ kubectl exec $MASTER_POD_NAME -it -- \
         --conf spark.driver.bindAddress=$MASTER_POD_IP \
         --conf spark.driver.host=$MASTER_POD_IP \
         --deploy-mode client \
-        --master k8s://spark://spark-master:7077
+        --master spark://spark-master:7077
 
 ```
 
@@ -28,6 +28,6 @@ kubectl exec $MASTER_POD_NAME -it -- \
         --conf spark.driver.bindAddress=$MASTER_POD_IP \
         --conf spark.driver.host=$MASTER_POD_IP \
         --deploy-mode client \
-        --master k8s://spark://spark-master:7077
+        --master spark://spark-master:7077
 
 ```
