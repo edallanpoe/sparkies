@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minikube-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/satisfy: "any"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: spark-kubernetes
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: spark-master
+                port: 
+                  number: 8080
+    - host: spark-kubernetes
+      http:
+        paths:
+          - path: /ui/
+            pathType: Prefix 
+            backend:
+              service:
+                name: spark-master
+                port: 
+                  number: 7077
+  
