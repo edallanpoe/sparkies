@@ -12,5 +12,3 @@ fi
 memory = '2g'
 pyspark_submit_args = ' --driver-memory ' + memory + ' pyspark-shell'
 os.environ["PYSPARK_SUBMIT_ARGS"] = pyspark_submit_args
-
-cat /etc/hosts
