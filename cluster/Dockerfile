@@ -2,7 +2,7 @@
 FROM openjdk:11
 
 # define spark and hadoop versions
-ENV SPARK_VERSION=3.2.0
+ENV SPARK_VERSION=3.1.1
 ENV HADOOP_VERSION=3.3.1
 
 # download and install hadoop
@@ -22,11 +22,16 @@ RUN mkdir -p /opt && \
     echo Spark ${SPARK_VERSION} installed in /opt
 
 # add scripts and update spark default config
-ADD ./configs/common.sh ./configs/spark-master ./configs/spark-worker /
-ADD ./configs/spark-defaults.conf /opt/spark/conf/spark-defaults.conf
+ADD ./cluster/configs/common.sh ./cluster/configs/spark-master ./cluster/configs/spark-worker /
+ADD ./cluster/configs/spark-defaults.conf /opt/spark/conf/spark-defaults.conf
 ENV PATH=$PATH:/opt/spark/bin
 
 RUN chmod +x /spark-* /common.sh /opt/spark/bin/*
-RUN mkdir /tmp/spark-events/
+RUN mkdir -p /tmp/spark-events/
+RUN chmod -R +rwx /tmp/spark-events/
+
+COPY src/ /opt/src/
+
+RUN chmod -R +rwx /opt/src/
 
 ENTRYPOINT [ "/bin/bash" ]

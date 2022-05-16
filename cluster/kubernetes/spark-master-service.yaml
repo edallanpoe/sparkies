@@ -4,14 +4,13 @@ metadata:
   name: spark-master
 spec:
   ports:
-    - name: spark-ui
+    - name: webui
       port: 8080
+      protocol: TCP
       targetPort: 8080
     - name: spark
       port: 7077
+      protocol: TCP
       targetPort: 7077
   selector:
     component: spark-master
-    interpreterSettingName: spark-master
-    clusterIP: None
-    type: ClusterIP

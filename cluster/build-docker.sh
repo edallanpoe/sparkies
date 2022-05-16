@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 CLUSTER_PATH=$(dirname $(realpath $0))
 
 MINIKUBE_STATUS=$(minikube status -o JSON)
@@ -8,11 +10,11 @@ if [ "Running" == "$(echo $MINIKUBE_STATUS | jq -r '.Host')" ] && \
     echo "[INFO] minikube already started ..."
 else
     echo "[INFO] Starting minikube ..."
-    minikube start --memory 8192 --cpus 4
+    minikube start --memory 8192 --cpus 4 --driver=docker
 fi
 
 echo "[INFO] Building Docker image ..."
 eval $(minikube docker-env)
-docker build -t spark-hadoop:3.2.0 -f $CLUSTER_PATH/Dockerfile $CLUSTER_PATH
+docker build -t spark-hadoop:3.2.0 -f $CLUSTER_PATH/Dockerfile .
 
 echo "[INFO] Docker image built ..."
