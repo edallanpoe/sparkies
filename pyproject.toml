@@ -3,7 +3,7 @@
 name = "sparkies"
 version = "0.1.0"
 description = ""
-authors = ["Daniel Restrepo Hincapie <drest@softserveinc.com>"]
+authors = ["Daniel Restrepo Hincapie"]
 license = "file:LICENSE"
 
 [tool.poetry.dependencies]
